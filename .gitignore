@@ -1,0 +1,7 @@
+# .gitignore
+node_modules
+target
+.env
+dist
+.idea
+.vscode

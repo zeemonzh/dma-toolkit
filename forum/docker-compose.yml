@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  flarum:
+    image: mondedie/flarum
+    container_name: flarum
+    ports:
+      - "8888:8888"
+    volumes:
+      - flarum_assets:/flarum/app/assets
+      - flarum_extensions:/flarum/app/extensions
+      - flarum_storage:/flarum/app/storage
+    environment:
+      - FORUM_URL=http://localhost:8888
+      - DB_HOST=flarum_db
+      - DB_NAME=flarum
+      - DB_USER=flarum
+      - DB_PASS=flarum_pass
+      - DB_PREF=flarum_
+      - DEBUG=false
+    depends_on:
+      - flarum_db
+
+  flarum_db:
+    image: mariadb:10.5
+    container_name: flarum_db
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=flarum
+      - MYSQL_USER=flarum
+      - MYSQL_PASSWORD=flarum_pass
+    volumes:
+      - flarum_db_data:/var/lib/mysql
+
+volumes:
+  flarum_assets:
+  flarum_extensions:
+  flarum_storage:
+  flarum_db_data:
