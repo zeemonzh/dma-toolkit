@@ -63,7 +63,7 @@ Local Companion Agent (Rust)
 
 ## ⚡ Project Philosophy
 
-> “DMA installation can be hard — but it doesn’t have to be. I am building a bridge between raw hardware control and intuitive UI to make the lives of many DMA newcomers easier.”  
+> "DMA installation can be hard — but it doesn't have to be. I am building a bridge between raw hardware control and intuitive UI to make the lives of many DMA newcomers easier."  
 > – *Paradox.*
 
 DMA Toolkit aims to revolutionize how we interface with hardware — not by simplifying capabilities, but by simplifying access to them.
@@ -78,16 +78,52 @@ DMA Toolkit aims to revolutionize how we interface with hardware — not by simp
 
 ---
 
-## 🗺️ Roadmap (High-Level)
+## 🗺️ Roadmap & Progress
+
+### Current Status: Front-End Development (Phase 1)
 
 - [x] Project scaffold complete
-- [ ] Heroic homepage with scroll-based sections
-- [ ] Tool Downloader integration
-- [ ] Agent installation wizard
+- [x] Heroic homepage with scroll-based sections
+- [x] UI Components and Navigation
+- [x] Framer Motion Animations
+- [x] Responsive Layout
+- [x] Setup Wizard UI
+- [x] Tool Downloader UI
+- [x] DMA ID Getter UI
+- [x] Speed Test UI
+- [x] Firmware Flasher UI
+- [x] System Checkup UI
+- [x] Logs Viewer UI
+- [x] DMA Information Page
+- [x] About Page
+- [ ] Forum Integration with Flarum
+- [ ] Backend API Connection
 - [ ] WebSocket backend for live speed tests
-- [ ] Logs console + diagnostics view
-- [ ] Forum integration live via Flarum
+- [ ] Agent Installation and Connection
 - [ ] First stable release
+
+---
+
+## 🌟 Recent Updates
+
+### v0.2.0 (Frontend Milestone)
+- Completed all core UI pages with responsive design
+- Implemented smooth animations using Framer Motion
+- Fixed page transition animation issues
+- Added comprehensive DMA information guide
+- Interactive setup wizard with step-by-step process
+- Tool download simulation with progress indicators
+- Speed test UI with real-time graphs
+- System checkup visualization with diagnostic results
+- Logs viewer with filtering capabilities
+- Firmware flasher with drag-and-drop support
+
+### v0.1.0 (Initial Scaffold)
+- Created project structure
+- Set up monorepo architecture
+- Initialized frontend with Vite + React + TypeScript
+- Configured TailwindCSS
+- Created main layout and navigation
 
 ---
 
@@ -112,4 +148,8 @@ cd apps/backend && ./gradlew bootRun
 
 # Local Agent
 cd tools/agent && cargo run
+
+# Start the Forum (Flarum)
+cd infra && docker-compose -f docker-compose.yml -f ../forum/docker-compose.yml up -d
+# The forum will be available at http://localhost:8888
 ```

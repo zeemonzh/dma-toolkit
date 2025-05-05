@@ -14,3 +14,6 @@ services:
 
 volumes:
   pgdata:
+
+# Include the forum services
+# To start the forum, run: docker-compose -f docker-compose.yml -f ../forum/docker-compose.yml up

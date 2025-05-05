@@ -10,6 +10,8 @@ services:
       - flarum_assets:/flarum/app/assets
       - flarum_extensions:/flarum/app/extensions
       - flarum_storage:/flarum/app/storage
+      - ./custom.css:/flarum/app/public/custom.css
+      - ./logo.svg:/flarum/app/public/logo.svg
     environment:
       - FORUM_URL=http://localhost:8888
       - DB_HOST=flarum_db
@@ -18,6 +20,11 @@ services:
       - DB_PASS=flarum_pass
       - DB_PREF=flarum_
       - DEBUG=false
+      # Admin credentials
+      - FLARUM_ADMIN_USER=admin
+      - FLARUM_ADMIN_PASS=adminpassword
+      - FLARUM_ADMIN_MAIL=admin@dmatoolkit.com
+      - FLARUM_TITLE=DMA Toolkit Forum
     depends_on:
       - flarum_db
 

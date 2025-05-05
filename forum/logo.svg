@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50" viewBox="0 0 200 50">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <path d="M22.5,10 C32.165,10 40,17.835 40,27.5 C40,37.165 32.165,45 22.5,45 C12.835,45 5,37.165 5,27.5 C5,17.835 12.835,10 22.5,10 Z M22.5,15 C15.596,15 10,20.596 10,27.5 C10,34.404 15.596,40 22.5,40 C29.404,40 35,34.404 35,27.5 C35,20.596 29.404,15 22.5,15 Z" fill="url(#gradient)"/>
+    <path d="M15,20 L30,20 L30,25 L25,25 L25,35 L20,35 L20,25 L15,25 L15,20 Z" fill="url(#gradient)"/>
+    <text font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF">
+      <tspan x="50" y="30">DMA TOOLKIT</tspan>
+    </text>
+    <text font-family="Arial, sans-serif" font-size="10" fill="#FFFFFF" opacity="0.8">
+      <tspan x="52" y="40">FORUM</tspan>
+    </text>
+  </g>
+</svg> 

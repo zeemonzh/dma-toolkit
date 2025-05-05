@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #111827;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,26 +17,185 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+html, body, #root {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
+  position: relative;
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
+  background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.05), transparent 60%),
+              radial-gradient(circle at bottom left, rgba(79, 70, 229, 0.05), transparent 60%);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background-image: 
+    linear-gradient(to bottom, rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 1)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.03'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Modern scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+/* Glass effect for cards */
+.glass-card {
+  background: rgba(31, 41, 55, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Gradient text */
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #818cf8, #c084fc);
+}
+
+/* Button with animated hover */
+.btn-animated {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.375rem;
+  background-color: #4f46e5;
+  padding: 0.5rem 1rem;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-animated::after {
+  content: '';
+  position: absolute;
+  top: -2.5rem;
+  left: -2.5rem;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+.btn-animated:hover::after {
+  transform: scale(12);
+}
+
+/* Better nav item styling */
+.nav-item {
+  display: flex;
+  gap: 0.75rem;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.nav-item-active {
+  background-color: rgba(79, 70, 229, 0.3);
+  color: white;
+}
+
+.nav-item-inactive {
+  color: #d1d5db;
+}
+
+.nav-item-inactive:hover {
+  background-color: rgba(55, 65, 81, 0.6);
+  color: white;
+}
+
+.nav-item-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.nav-item-icon-active {
+  color: #818cf8;
+}
+
+.nav-item:hover .nav-item-icon {
+  color: #818cf8;
+}
+
+a {
+  font-weight: 500;
+  color: #6366f1;
+  text-decoration: inherit;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #818cf8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
 }
 
 h1 {
   font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {
@@ -46,16 +205,17 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.25s ease;
 }
+
 button:hover {
   border-color: #646cff;
+  transform: translateY(-2px);
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+button:active {
+  transform: translateY(0);
 }
 
 @media (prefers-color-scheme: light) {
@@ -65,8 +225,5 @@ button:focus-visible {
   }
   a:hover {
     color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }
