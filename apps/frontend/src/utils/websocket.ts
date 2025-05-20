@@ -14,7 +14,7 @@ class AgentWebSocket {
     public connect(): Promise<void> {
         return new Promise((resolve, reject) => {
             try {
-                this.ws = new WebSocket('ws://localhost:8080/ws');
+                this.ws = new WebSocket('ws://localhost:8081/ws');
                 this.ws.onopen = () => resolve();
                 this.ws.onerror = (error) => reject(error);
             } catch (error) {

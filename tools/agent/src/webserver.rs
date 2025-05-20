@@ -28,7 +28,7 @@ pub async fn start_server() -> Result<(), Box<dyn std::error::Error>> {
         .route("/ws", get(ws_handler))
         .route("/health", get(health_check));
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
+    let addr = SocketAddr::from(([127, 0, 0, 1], 8081));
     println!("Agent webserver running on {}", addr);
 
     axum::serve(

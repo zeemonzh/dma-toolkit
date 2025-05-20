@@ -22,16 +22,24 @@ export default function Setup() {
   const [currentStep, setCurrentStep] = useState(0)
   const [agentConnected, setAgentConnected] = useState(false)
   const [downloadComplete, setDownloadComplete] = useState(false)
+  const [downloading, setDownloading] = useState(false)
   const [installComplete, setInstallComplete] = useState(false)
   const [installInstructions, setInstallInstructions] = useState<string[]>([])
+  const [downloadError, setDownloadError] = useState<string | null>(null)
 
   const handleDownload = async () => {
+    setDownloading(true)
+    setDownloadError(null)
+    
     try {
+      // Download the agent
       await DownloadService.downloadAgent('windows')
       setDownloadComplete(true)
     } catch (error) {
       console.error('Download error:', error)
-      alert('Failed to download agent. Please try again.')
+      setDownloadError('Failed to download agent. Please try again.');
+    } finally {
+      setDownloading(false)
     }
   }
 
@@ -144,20 +152,37 @@ export default function Setup() {
                 <p className="mt-2 text-gray-300">
                   The DMA Toolkit requires a local agent to interact with your hardware. Download the agent for your operating system.
                 </p>
+                
+                {downloadError && (
+                  <div className="mt-4 rounded-md bg-red-900 p-4 text-white text-sm">
+                    <p>Error: {downloadError}</p>
+                  </div>
+                )}
+                
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <button
                     onClick={handleDownload}
                     className={`flex items-center justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm ${
-                      !downloadComplete
-                        ? 'bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-                        : 'bg-green-600 text-white'
+                      downloadComplete
+                        ? 'bg-green-600 text-white'
+                        : downloading
+                        ? 'bg-gray-600 text-white cursor-wait'
+                        : 'bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
                     }`}
-                    disabled={downloadComplete}
+                    disabled={downloadComplete || downloading}
                   >
                     {downloadComplete ? (
                       <>
                         <CheckCircleIcon className="mr-2 h-5 w-5" />
                         Downloaded
+                      </>
+                    ) : downloading ? (
+                      <>
+                        <svg className="animate-spin mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Downloading...
                       </>
                     ) : (
                       <>
