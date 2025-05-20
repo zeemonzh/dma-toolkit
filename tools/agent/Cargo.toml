@@ -1,9 +1,24 @@
 [package]
-name = "agent"
+name = "dma-toolkit-agent"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
+description = "Local agent for DMA Toolkit"
+authors = ["Your Name <your.email@example.com>"]
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
 tokio = { version = "1.36", features = ["full"] }
-axum = "0.7"
+axum = { version = "0.7", features = ["ws"] }
+dirs = "5.0"
+
+[package.metadata.wix]
+upgrade-guid = "12345678-1234-1234-1234-123456789012"
+path-guid = "12345678-1234-5678-1234-567812345678"
+
+[target.'cfg(windows)'.build-dependencies]
+winres = "0.1"
+
+[[bin]]
+name = "dma-toolkit-agent"
+path = "src/main.rs"

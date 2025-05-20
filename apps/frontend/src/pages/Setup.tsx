@@ -1,12 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { 
   ArrowDownTrayIcon, 
   CheckCircleIcon, 
   ArrowRightCircleIcon,
-  ChevronRightIcon
+  ChevronRightIcon,
+  FolderPlusIcon
 } from '@heroicons/react/24/outline'
+import { agentWs } from '../utils/websocket'
+import { DownloadService } from '../services/DownloadService'
 
 const steps = [
   { id: 'step1', name: 'Download Agent', status: 'current' },
@@ -20,12 +23,16 @@ export default function Setup() {
   const [agentConnected, setAgentConnected] = useState(false)
   const [downloadComplete, setDownloadComplete] = useState(false)
   const [installComplete, setInstallComplete] = useState(false)
+  const [installInstructions, setInstallInstructions] = useState<string[]>([])
 
-  const handleDownload = () => {
-    // In a real app, this would trigger a download
-    setTimeout(() => {
+  const handleDownload = async () => {
+    try {
+      await DownloadService.downloadAgent('windows')
       setDownloadComplete(true)
-    }, 1500)
+    } catch (error) {
+      console.error('Download error:', error)
+      alert('Failed to download agent. Please try again.')
+    }
   }
 
   const handleInstall = () => {
@@ -36,13 +43,22 @@ export default function Setup() {
     }, 1500)
   }
 
-  const handleConnect = () => {
-    // In a real app, this would check if the agent is connected
-    setTimeout(() => {
-      setAgentConnected(true)
-      setCurrentStep(3)
-    }, 1500)
-  }
+  const handleConnect = async () => {
+    try {
+      await agentWs.connect();
+      setAgentConnected(true);
+      setCurrentStep(2);
+    } catch (error) {
+      console.error('Failed to connect to agent:', error);
+      alert('Failed to connect to agent. Make sure it is running.');
+    }
+  };
+
+  useEffect(() => {
+    if (downloadComplete) {
+      setInstallInstructions(DownloadService.getInstallInstructions('windows'))
+    }
+  }, [downloadComplete])
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -191,9 +207,9 @@ export default function Setup() {
                 <div className="mt-4 rounded-md bg-gray-900 p-4">
                   <pre className="text-sm text-gray-300">
                     <code>
-                      1. Double-click the downloaded installer<br />
-                      2. Follow the on-screen instructions<br />
-                      3. Allow the agent to run on your system when prompted
+                      {installInstructions.map((instruction, index) => (
+                        <div key={index}>{instruction}</div>
+                      ))}
                     </code>
                   </pre>
                 </div>
@@ -275,13 +291,30 @@ export default function Setup() {
                     Connect Agent
                   </button>
                   {agentConnected && (
-                    <button
-                      onClick={() => setCurrentStep(3)}
-                      className="mt-6 flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
-                    >
-                      Next Step
-                      <ChevronRightIcon className="ml-2 h-5 w-5" />
-                    </button>
+                    <>
+                      <button
+                        onClick={async () => {
+                          try {
+                            const result = await agentWs.sendCommand('create_demo_folder');
+                            alert(`Demo folder created at: ${result.path}`);
+                          } catch (error) {
+                            console.error('Error:', error);
+                            alert('Error creating demo folder');
+                          }
+                        }}
+                        className="mt-4 flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500"
+                      >
+                        <FolderPlusIcon className="mr-2 h-5 w-5" />
+                        Create Demo Folder
+                      </button>
+                      <button
+                        onClick={() => setCurrentStep(3)}
+                        className="mt-6 flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
+                      >
+                        Next Step
+                        <ChevronRightIcon className="ml-2 h-5 w-5" />
+                      </button>
+                    </>
                   )}
                 </div>
               </motion.div>
