@@ -1,0 +1,43 @@
+{
+  "name": "dma-toolkit-agent-gui",
+  "version": "1.0.0",
+  "description": "GUI for DMA Toolkit Agent",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "cd .. && cargo build --release && cd gui && electron-builder --win portable --x64 --config.win.signAndEditExecutable=false",
+    "dev": "electron . --dev"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+    "tree-kill": "^1.2.2"
+  },
+  "build": {
+    "appId": "com.dmatoolkit.agent",
+    "productName": "DMA Toolkit Agent",
+    "directories": {
+      "output": "dist"
+    },
+    "extraResources": [
+      {
+        "from": "../target/release/dma-toolkit-agent.exe",
+        "to": "agent/dma-toolkit-agent.exe"
+      }
+    ],
+    "win": {
+      "target": "portable",
+      "signAndEditExecutable": false,
+      "icon": "assets/icon.ico"
+    },
+    "portable": {
+      "artifactName": "DMA-Toolkit-Agent-Portable.exe"
+    },
+    "asar": true,
+    "compression": "maximum"
+  }
+} 

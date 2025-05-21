@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DMA Toolkit Agent</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      background: transparent;
+      color: white;
+      -webkit-app-region: drag;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .container {
+      background: rgba(17, 24, 39, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 8px;
+      padding: 1rem;
+      height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border: 2px solid #6366f1;
+      border-radius: 6px;
+      position: relative;
+      animation: rotate 8s linear infinite;
+    }
+
+    .logo-icon::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      background: #6366f1;
+      border-radius: 2px;
+      animation: rotate-reverse 8s linear infinite;
+    }
+
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      background: linear-gradient(to right, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: #d1d5db;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes rotate-reverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .close-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: none;
+      background: transparent;
+      color: #6b7280;
+      cursor: pointer;
+      -webkit-app-region: no-drag;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .close-button:hover {
+      background: rgba(99, 102, 241, 0.1);
+      color: #6366f1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="close-button" onclick="window.close()">✕</button>
+    <div class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">DMA Toolkit</div>
+    </div>
+    <div class="status">
+      <div class="status-dot"></div>
+      <span>Agent Running</span>
+    </div>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    ipcRenderer.on('agent-output', (event, data) => {
+      console.log('Agent output:', data);
+    });
+
+    ipcRenderer.on('agent-error', (event, data) => {
+      console.error('Agent error:', data);
+    });
+
+    ipcRenderer.on('agent-closed', (event, code) => {
+      console.log('Agent closed with code:', code);
+      document.querySelector('.status-dot').style.background = '#ef4444';
+      document.querySelector('.status span').textContent = 'Agent Stopped';
+    });
+  </script>
+</body>
+</html> 
