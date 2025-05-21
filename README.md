@@ -80,60 +80,61 @@ DMA Toolkit aims to revolutionize how we interface with hardware — not by simp
 
 ## 🗺️ Roadmap & Progress
 
-### Current Status: Front-End Development (Phase 1)
+### Current Status: Early Development Phase
 
+#### Frontend (70% Complete)
 - [x] Project scaffold complete
-- [x] Heroic homepage with scroll-based sections
-- [x] UI Components and Navigation
-- [x] Framer Motion Animations
-- [x] Responsive Layout
-- [x] Setup Wizard UI
-- [x] Tool Downloader UI
-- [x] DMA ID Getter UI
-- [x] Speed Test UI
-- [x] Firmware Flasher UI
-- [x] System Checkup UI
-- [x] Logs Viewer UI
-- [x] DMA Information Page
-- [x] About Page
-- [ ] Forum Integration with Flarum
-- [ ] Backend API Connection
-- [ ] WebSocket backend for live speed tests
-- [ ] Agent Installation and Connection
-- [ ] First stable release
+- [x] Modern UI framework setup (Vite + React + TypeScript)
+- [x] Responsive layout system with TailwindCSS
+- [x] Beautiful animations with Framer Motion
+- [x] Homepage with interactive elements
+- [x] Navigation system with keyboard shortcuts
+- [x] Basic UI components for all main features
+- [x] Dark theme implementation
+- [ ] Real-time data visualization components
+- [ ] WebSocket connection handling
+- [ ] Error handling and feedback systems
+- [ ] Agent connection status management
 
----
+#### Backend (20% Complete)
+- [x] Project structure setup with Spring Boot
+- [x] Basic API endpoints structure
+- [ ] Database schema and migrations
+- [ ] WebSocket server implementation
+- [ ] Authentication system
+- [ ] Device management logic
+- [ ] Speed test orchestration
+- [ ] Firmware management
+- [ ] Logging system
 
-## 🌟 Recent Updates
+#### Agent (30% Complete)
+- [x] Basic Rust project structure
+- [x] WebSocket client implementation
+- [x] Command handling system
+- [ ] Hardware interaction layer
+- [ ] Device detection
+- [ ] Speed test implementation
+- [ ] Firmware flashing capability
+- [ ] System diagnostics
 
-### v0.2.0 (Frontend Milestone)
-- Completed all core UI pages with responsive design
-- Implemented smooth animations using Framer Motion
-- Fixed page transition animation issues
-- Added comprehensive DMA information guide
-- Interactive setup wizard with step-by-step process
-- Tool download simulation with progress indicators
-- Speed test UI with real-time graphs
-- System checkup visualization with diagnostic results
-- Logs viewer with filtering capabilities
-- Firmware flasher with drag-and-drop support
-
-### v0.1.0 (Initial Scaffold)
-- Created project structure
-- Set up monorepo architecture
-- Initialized frontend with Vite + React + TypeScript
-- Configured TailwindCSS
-- Created main layout and navigation
+#### Infrastructure (10% Complete)
+- [x] Basic Docker setup
+- [ ] CI/CD pipeline
+- [ ] Development environment
+- [ ] Production deployment
+- [ ] Monitoring setup
+- [ ] Backup system
 
 ---
 
 ## 📁 Structure
 
-- `apps/frontend`: Web UI
-- `apps/backend`: API and database logic
-- `tools/agent`: Local Rust companion app
-- `infra`: Docker + deployment
-- `docs`: Architecture, API, setup
+- `apps/frontend`: Web UI built with React
+- `apps/backend`: Spring Boot API server
+- `agent`: Rust-based local companion
+- `infra`: Docker and deployment configs
+- `docs`: Architecture and API documentation
+- `forum`: Flarum-based community platform
 
 ---
 
@@ -147,9 +148,32 @@ cd apps/frontend && npm install && npm run dev
 cd apps/backend && ./gradlew bootRun
 
 # Local Agent
-cd tools/agent && cargo run
+cd agent && cargo run
 
 # Start the Forum (Flarum)
 cd infra && docker-compose -f docker-compose.yml -f ../forum/docker-compose.yml up -d
 # The forum will be available at http://localhost:8888
 ```
+
+---
+
+## 🌟 Recent Updates
+
+### v0.3.0 (In Progress)
+- Implementing core functionality in all components
+- Building real-time communication between components
+- Developing hardware interaction layer in agent
+
+### v0.2.0 (Frontend Foundation)
+- Completed modern UI framework setup
+- Implemented responsive layout system
+- Added beautiful animations and transitions
+- Created interactive homepage
+- Developed navigation system with keyboard shortcuts
+- Built UI shells for all main features
+
+### v0.1.0 (Initial Scaffold)
+- Created project structure
+- Set up monorepo architecture
+- Initialized all major components
+- Configured basic build systems

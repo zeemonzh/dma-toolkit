@@ -15,7 +15,11 @@ import {
   DocumentTextIcon,
   Cog6ToothIcon,
   InformationCircleIcon,
-  BookOpenIcon
+  BookOpenIcon,
+  BoltIcon,
+  ComputerDesktopIcon,
+  UsersIcon,
+  ArrowTopRightOnSquareIcon
 } from '@heroicons/react/24/outline'
 
 // Define the navigation item type
@@ -39,6 +43,59 @@ const navigation: NavigationItem[] = [
   { name: 'DMA Info', href: '/dma-info', icon: BookOpenIcon, shortcut: '9' },
   { name: 'About', href: '/about', icon: InformationCircleIcon, shortcut: '0' },
 ]
+
+// Quick Actions Section
+const quickActions = [
+  { name: 'Quick Test', icon: BoltIcon, action: () => console.log('Quick Test') },
+  { name: 'Check Device', icon: ComputerDesktopIcon, action: () => console.log('Check Device') },
+  { name: 'Clear Cache', icon: XMarkIcon, action: () => console.log('Clear Cache') },
+]
+
+// Recent Activities
+const recentActivities = [
+  { name: 'Speed Test Run', time: '2 min ago', icon: ChartBarIcon },
+  { name: 'Firmware Update', time: '1 hour ago', icon: ServerIcon },
+  { name: 'System Check', time: '3 hours ago', icon: WrenchScrewdriverIcon },
+]
+
+// Resource Monitor Component
+const ResourceMonitor = () => {
+  const [cpuUsage] = useState(45)
+  const [memoryUsage] = useState(60)
+  
+  return (
+    <div className="space-y-3">
+      <div>
+        <div className="flex justify-between text-xs text-gray-400 mb-1">
+          <span>CPU Usage</span>
+          <span>{cpuUsage}%</span>
+        </div>
+        <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
+          <motion.div
+            className="h-full bg-indigo-500 rounded-full"
+            initial={{ width: 0 }}
+            animate={{ width: `${cpuUsage}%` }}
+            transition={{ duration: 0.5 }}
+          />
+        </div>
+      </div>
+      <div>
+        <div className="flex justify-between text-xs text-gray-400 mb-1">
+          <span>Memory Usage</span>
+          <span>{memoryUsage}%</span>
+        </div>
+        <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
+          <motion.div
+            className="h-full bg-purple-500 rounded-full"
+            initial={{ width: 0 }}
+            animate={{ width: `${memoryUsage}%` }}
+            transition={{ duration: 0.5 }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
 
 // Animated logo component
 const AnimatedLogo = () => {
@@ -98,12 +155,38 @@ const AnimatedLogo = () => {
   );
 };
 
+// Discord section component
+const DiscordCard = () => (
+  <motion.a
+    href="https://discord.com/invite/suspectcheats"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block rounded-lg bg-indigo-500/10 p-4 hover:bg-indigo-500/20 transition-colors"
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
+  >
+    <div className="flex items-center justify-between">
+      <div className="flex items-center space-x-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-500/20">
+          <UsersIcon className="h-6 w-6 text-indigo-400" />
+        </div>
+        <div>
+          <h3 className="text-sm font-medium text-indigo-400">Join Community</h3>
+          <p className="text-xs text-gray-400">Get help & share setups</p>
+        </div>
+      </div>
+      <ArrowTopRightOnSquareIcon className="h-5 w-5 text-indigo-400" />
+    </div>
+  </motion.a>
+);
+
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false)
   const agentStatus = useAgentStatus()
+  const [showExtras, setShowExtras] = useState(true) // For larger screens
 
   useEffect(() => {
     const handleScroll = () => {
@@ -206,6 +289,121 @@ export default function Layout() {
       <span className="text-xs text-gray-400">{agentStatus.message}</span>
     </div>
   )
+
+  const renderSidebarExtras = () => (
+    <motion.div 
+      className="space-y-4 pt-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.2 }}
+    >
+      {/* Separator */}
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center" aria-hidden="true">
+          <div className="w-full border-t border-gray-700/50"></div>
+        </div>
+        <div className="relative flex justify-center">
+          <button
+            type="button"
+            className="inline-flex items-center gap-x-1.5 rounded-full bg-gray-800/50 px-3 py-1.5 text-xs font-medium text-gray-400 shadow-sm hover:bg-gray-800 transition-colors"
+            onClick={() => setShowExtras(!showExtras)}
+          >
+            <motion.span
+              animate={{ rotate: showExtras ? 180 : 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              ⌄
+            </motion.span>
+            {showExtras ? 'Hide' : 'Show'} Extras
+          </button>
+        </div>
+      </div>
+
+      {/* Collapsible Extras */}
+      <AnimatePresence>
+        {showExtras && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-4 overflow-hidden"
+          >
+            {/* Resource Monitor */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="rounded-lg bg-gray-800/50 p-4"
+            >
+              <h3 className="text-sm font-semibold text-gray-300 mb-4">System Resources</h3>
+              <ResourceMonitor />
+            </motion.div>
+
+            {/* Quick Actions */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="rounded-lg bg-gray-800/50 p-4"
+            >
+              <h3 className="text-sm font-semibold text-gray-300 mb-3">Quick Actions</h3>
+              <div className="grid grid-cols-3 gap-2">
+                {quickActions.map((action) => (
+                  <motion.button
+                    key={action.name}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={action.action}
+                    className="flex flex-col items-center p-2 rounded-lg bg-gray-700/50 hover:bg-gray-700 transition-colors"
+                  >
+                    <action.icon className="h-5 w-5 text-indigo-400" />
+                    <span className="text-xs text-gray-300 mt-1">{action.name}</span>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Recent Activities */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="rounded-lg bg-gray-800/50 p-4"
+            >
+              <h3 className="text-sm font-semibold text-gray-300 mb-3">Recent Activities</h3>
+              <div className="space-y-3">
+                {recentActivities.map((activity, index) => (
+                  <motion.div
+                    key={activity.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.6 + index * 0.1 }}
+                    className="flex items-center gap-3 text-sm"
+                  >
+                    <activity.icon className="h-5 w-5 text-indigo-400" />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-gray-300 truncate">{activity.name}</p>
+                      <p className="text-gray-500 text-xs">{activity.time}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Discord Community */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+            >
+              <DiscordCard />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
 
   return (
     <>
@@ -330,6 +528,7 @@ export default function Layout() {
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
+                {/* Main Navigation */}
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => {
@@ -398,8 +597,14 @@ export default function Layout() {
                     })}
                   </ul>
                 </li>
+
+                {/* Extras Section */}
                 <li className="mt-auto">
-                  {renderAgentStatus()}
+                  {renderSidebarExtras()}
+                  {/* Agent Status */}
+                  <div className="mt-4">
+                    {renderAgentStatus()}
+                  </div>
                 </li>
               </ul>
             </nav>

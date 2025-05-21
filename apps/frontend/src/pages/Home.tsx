@@ -419,14 +419,14 @@ export default function Home() {
         
         <div className="overflow-hidden w-full">
           <motion.div 
-            className="mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8 lg:pt-20 relative z-10"
+            className="mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8 lg:pt-20 relative z-10 flex justify-center"
             style={{ 
               opacity: contentOpacity, 
               y: contentY,
               scale: contentScale
             }}
           >
-            <div className="mx-auto max-w-2xl gap-x-8 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
+            <div className="mx-auto max-w-2xl gap-x-8 lg:mx-auto lg:flex lg:max-w-none lg:items-center">
               <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
                 <motion.div
                   initial={{ opacity: 0 }}
