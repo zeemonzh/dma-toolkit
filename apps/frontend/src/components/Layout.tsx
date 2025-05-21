@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from 'react'
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
 import { Dialog, Transition } from '@headlessui/react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useAgentStatus } from '../hooks/useAgentStatus'
 import {
   HomeIcon,
   ServerIcon,
@@ -102,7 +103,7 @@ export default function Layout() {
   const location = useLocation()
   const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false)
-  const [statusPulse, setStatusPulse] = useState(false)
+  const agentStatus = useAgentStatus()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -112,15 +113,6 @@ export default function Layout() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-  
-  // Status indicator pulse animation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setStatusPulse(prev => !prev);
-    }, 3000);
-    
-    return () => clearInterval(interval);
-  }, []);
 
   // Add keyboard shortcuts
   useEffect(() => {
@@ -166,6 +158,54 @@ export default function Layout() {
     hidden: { opacity: 0, x: -20 },
     visible: { opacity: 1, x: 0 }
   };
+
+  // Update the agent status section in the sidebar
+  const renderAgentStatus = () => (
+    <motion.div 
+      className="rounded-md bg-gray-800/50 p-3 text-xs text-gray-400"
+      whileHover={{ scale: 1.02, backgroundColor: "rgba(30, 41, 59, 0.7)" }}
+    >
+      <div className="flex items-center">
+        <motion.div 
+          className={`h-2 w-2 rounded-full ${agentStatus.isConnected ? 'bg-green-500' : 'bg-red-500'} mr-2`}
+          animate={{ 
+            scale: [1, 1.5, 1],
+            opacity: [1, 0.7, 1]
+          }}
+          transition={{ 
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <span>{agentStatus.message}</span>
+      </div>
+      {agentStatus.lastError && (
+        <div className="mt-1 text-red-400 text-xs">
+          {agentStatus.lastError}
+        </div>
+      )}
+    </motion.div>
+  )
+
+  // Update the agent status in the top navbar
+  const renderTopbarStatus = () => (
+    <div className="hidden sm:flex sm:items-center sm:gap-2">
+      <motion.span 
+        className={`inline-flex h-2 w-2 rounded-full ${agentStatus.isConnected ? 'bg-green-500' : 'bg-red-500'}`}
+        animate={{ 
+          scale: [1, 1.5, 1],
+          opacity: [1, 0.7, 1]
+        }}
+        transition={{ 
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <span className="text-xs text-gray-400">{agentStatus.message}</span>
+    </div>
+  )
 
   return (
     <>
@@ -359,22 +399,7 @@ export default function Layout() {
                   </ul>
                 </li>
                 <li className="mt-auto">
-                  <motion.div 
-                    className="rounded-md bg-gray-800/50 p-3 text-xs text-gray-400"
-                    whileHover={{ scale: 1.02, backgroundColor: "rgba(30, 41, 59, 0.7)" }}
-                  >
-                    <div className="flex items-center">
-                      <motion.div 
-                        className="h-2 w-2 rounded-full bg-green-500 mr-2"
-                        animate={{ 
-                          scale: statusPulse ? 1.5 : 1,
-                          opacity: statusPulse ? 0.7 : 1
-                        }}
-                        transition={{ duration: 1 }}
-                      />
-                      <span>Agent connected</span>
-                    </div>
-                  </motion.div>
+                  {renderAgentStatus()}
                 </li>
               </ul>
             </nav>
@@ -406,17 +431,7 @@ export default function Layout() {
                   DMA Toolkit
                 </motion.h2>
                 <div className="ml-auto flex items-center gap-x-4">
-                  <div className="hidden sm:flex sm:items-center sm:gap-2">
-                    <motion.span 
-                      className="inline-flex h-2 w-2 rounded-full bg-green-500"
-                      animate={{ 
-                        scale: statusPulse ? 1.5 : 1,
-                        backgroundColor: statusPulse ? '#22c55e' : '#10b981'
-                      }}
-                      transition={{ duration: 1 }}
-                    />
-                    <span className="text-xs text-gray-400">Agent active</span>
-                  </div>
+                  {renderTopbarStatus()}
                   <div className="h-6 w-px bg-gray-700 hidden sm:block"></div>
                   <motion.a 
                     href="#" 

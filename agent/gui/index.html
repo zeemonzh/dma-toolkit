@@ -48,10 +48,11 @@
     .logo-icon::after {
       content: '';
       position: absolute;
-      inset: 4px;
+      inset: 6px;
       background: #6366f1;
-      border-radius: 2px;
+      border-radius: 3px;
       animation: rotate-reverse 8s linear infinite;
+      transform-origin: center;
     }
 
     .logo-text {
@@ -85,8 +86,8 @@
     }
 
     @keyframes rotate-reverse {
-      from { transform: rotate(360deg); }
-      to { transform: rotate(0deg); }
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-720deg); }
     }
 
     @keyframes pulse {
