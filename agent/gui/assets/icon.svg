@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <!-- Outer glow filter -->
+        <filter id="outerGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="15" />
+            <feOffset dx="0" dy="0" />
+            <feComposite in2="SourceGraphic" operator="out" />
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="2" />
+            </feComponentTransfer>
+            <feBlend in2="SourceGraphic" mode="screen" />
+        </filter>
+        
+        <!-- Inner glow filter -->
+        <filter id="innerGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="8" />
+            <feOffset dx="0" dy="0" />
+            <feComposite in2="SourceGraphic" operator="out" />
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="1.5" />
+            </feComponentTransfer>
+            <feBlend in2="SourceGraphic" mode="screen" />
+        </filter>
+
+        <!-- Background gradient -->
+        <radialGradient id="bgGradient" cx="50%" cy="50%" r="100%">
+            <stop offset="0%" stop-color="#1E2433" />
+            <stop offset="100%" stop-color="#111827" />
+        </radialGradient>
+
+        <!-- Inner square gradient -->
+        <linearGradient id="innerSquareGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#818CF8" />
+            <stop offset="50%" stop-color="#6366F1" />
+            <stop offset="100%" stop-color="#4F46E5" />
+        </linearGradient>
+
+        <!-- Outer square gradient -->
+        <linearGradient id="outerSquareGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#A78BFA" />
+            <stop offset="50%" stop-color="#8B5CF6" />
+            <stop offset="100%" stop-color="#7C3AED" />
+        </linearGradient>
+    </defs>
+
+    <!-- Dark background with gradient -->
+    <rect width="512" height="512" rx="128" fill="url(#bgGradient)" />
+    
+    <!-- Outer square with glow -->
+    <rect 
+        x="96" 
+        y="96" 
+        width="320" 
+        height="320" 
+        rx="64"
+        stroke="url(#outerSquareGradient)"
+        stroke-width="24"
+        fill="transparent"
+        filter="url(#outerGlow)"
+    />
+    
+    <!-- Inner square with glow -->
+    <rect 
+        x="156" 
+        y="156" 
+        width="200" 
+        height="200" 
+        rx="40"
+        fill="url(#innerSquareGradient)"
+        filter="url(#innerGlow)"
+    />
+</svg> 
