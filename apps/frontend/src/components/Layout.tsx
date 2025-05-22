@@ -407,7 +407,7 @@ export default function Layout() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-900">
+      <div className="min-h-screen bg-transparent">
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
             <Transition.Child

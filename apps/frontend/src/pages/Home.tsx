@@ -372,9 +372,9 @@ export default function Home() {
   };
   
   return (
-    <div className="relative isolate">
+    <div className="relative isolate -mt-10">
       {/* Hero section */}
-      <div className="relative isolate min-h-[80vh] flex items-center -z-10" ref={heroRef}>
+      <div className="relative isolate min-h-screen flex items-center -z-10 pt-10" ref={heroRef}>
         <Particles />
         <CircuitAnimation />
         
@@ -538,7 +538,7 @@ export default function Home() {
 
       {/* Feature section */}
       <div className="relative z-10 py-10">
-        <div className="absolute inset-0 bg-gray-900/90"></div>
+        <div className="absolute inset-0 bg-transparent"></div>
         
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div 
