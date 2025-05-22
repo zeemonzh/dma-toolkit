@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useRef, useEffect, useState } from 'react'
 import {
@@ -77,7 +77,7 @@ const CircuitAnimation = () => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 1.2, ease: "easeInOut", delay: 0.1 }}
-            stroke="#6366f1"
+            stroke="#e9213d"
             strokeWidth="2"
             fill="none"
           />
@@ -86,7 +86,7 @@ const CircuitAnimation = () => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 1, ease: "easeInOut", delay: 0.2 }}
-            stroke="#6366f1"
+            stroke="#e9213d"
             strokeWidth="2"
             fill="none"
           />
@@ -95,7 +95,7 @@ const CircuitAnimation = () => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeInOut", delay: 0.3 }}
-            stroke="#6366f1"
+            stroke="#e9213d"
             strokeWidth="2"
             fill="none"
           />
@@ -104,7 +104,7 @@ const CircuitAnimation = () => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 1.1, ease: "easeInOut", delay: 0.4 }}
-            stroke="#6366f1"
+            stroke="#e9213d"
             strokeWidth="2"
             fill="none"
           />
@@ -115,7 +115,7 @@ const CircuitAnimation = () => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 0.9, ease: "easeInOut", delay: 0.2 }}
-            stroke="#6366f1"
+            stroke="#e9213d"
             strokeWidth="2"
             fill="none"
           />
@@ -124,7 +124,7 @@ const CircuitAnimation = () => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 1.2, ease: "easeInOut", delay: 0.3 }}
-            stroke="#6366f1"
+            stroke="#e9213d"
             strokeWidth="2"
             fill="none"
           />
@@ -133,7 +133,7 @@ const CircuitAnimation = () => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 1, ease: "easeInOut", delay: 0.4 }}
-            stroke="#6366f1"
+            stroke="#e9213d"
             strokeWidth="2"
             fill="none"
           />
@@ -142,7 +142,7 @@ const CircuitAnimation = () => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 1.3, ease: "easeInOut", delay: 0.5 }}
-            stroke="#6366f1"
+            stroke="#e9213d"
             strokeWidth="2"
             fill="none"
           />
@@ -153,28 +153,28 @@ const CircuitAnimation = () => {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.7 }}
-            fill="#818cf8"
+            fill="#ff4757"
           />
           <motion.circle
             cx="400" cy="400" r="5"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.8 }}
-            fill="#818cf8"
+            fill="#ff4757"
           />
           <motion.circle
             cx="600" cy="600" r="5"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.9 }}
-            fill="#818cf8"
+            fill="#ff4757"
           />
           <motion.circle
             cx="800" cy="800" r="5"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3, delay: 1.0 }}
-            fill="#818cf8"
+            fill="#ff4757"
           />
           
           {/* Diagonal connections */}
@@ -183,7 +183,7 @@ const CircuitAnimation = () => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeInOut", delay: 0.9 }}
-            stroke="#818cf8"
+            stroke="#ff4757"
             strokeWidth="2"
             fill="none"
           />
@@ -192,7 +192,7 @@ const CircuitAnimation = () => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeInOut", delay: 1.0 }}
-            stroke="#818cf8"
+            stroke="#ff4757"
             strokeWidth="2"
             fill="none"
           />
@@ -201,7 +201,7 @@ const CircuitAnimation = () => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeInOut", delay: 1.1 }}
-            stroke="#818cf8"
+            stroke="#ff4757"
             strokeWidth="2"
             fill="none"
           />
@@ -224,7 +224,7 @@ const Particles = () => {
       particle.style.position = 'absolute'
       particle.style.width = '2px'
       particle.style.height = '2px'
-      particle.style.background = 'rgba(123, 104, 238, 0.4)'
+      particle.style.background = 'rgba(233, 33, 61, 0.4)'
       particle.style.borderRadius = '50%'
       
       // Random position
@@ -265,7 +265,7 @@ const Particles = () => {
       ref={particleRef} 
       className="absolute inset-0 overflow-hidden pointer-events-none z-0"
       style={{
-        background: 'radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.08), transparent 70%)'
+        background: 'radial-gradient(circle at 50% 50%, rgba(233, 33, 61, 0.08), transparent 70%)'
       }}
     >
       <style>
@@ -300,66 +300,40 @@ const AnimatedCard = ({
   icon: React.ElementType, 
   delay?: number 
 }) => {
-  const [hovered, setHovered] = useState(false)
-  const [clicked, setClicked] = useState(false)
-  
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
-      className="relative"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onClick={() => {
-        setClicked(true);
-        setTimeout(() => setClicked(false), 1000);
+      className="relative group cursor-pointer"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3, delay }}
+      whileHover={{ 
+        scale: 1.05,
+        transition: { duration: 0.2 }
       }}
     >
-      <div className="aspect-square w-full overflow-hidden rounded-xl bg-gray-800 shadow-xl ring-1 ring-white/10 relative">
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10"
-          animate={{ 
-            opacity: hovered ? 1 : 0,
-            background: clicked ? [
-              "linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(168, 85, 247, 0.3))",
-              "linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1))"
-            ] : "linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1))"
-          }}
-          transition={{ 
-            opacity: { duration: 0.3 },
-            background: { duration: 0.8, ease: "easeOut" }
-          }}
-        />
-        <motion.div 
-          className="h-full flex items-center justify-center"
-          animate={{ 
-            scale: clicked ? [1, 1.2, 1] : (hovered ? 1.05 : 1),
-            rotate: clicked ? [0, 10, -10, 0] : (hovered ? 5 : 0)
-          }}
-          transition={{ 
-            type: clicked ? "spring" : "tween", 
-            stiffness: 300,
-            duration: clicked ? 0.8 : 0.3
+      <div className="absolute inset-0 bg-gradient-to-br from-red-600/30 to-red-800/30 rounded-xl blur-xl group-hover:blur-lg transition-all duration-300" />
+      <motion.div
+        className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/80 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 h-32 flex items-center justify-center group-hover:border-red-500/50 transition-all duration-300"
+        whileHover={{
+          boxShadow: "0 10px 30px -15px rgba(233, 33, 61, 0.3)"
+        }}
+      >
+        <motion.div
+          className="relative"
+          whileHover={{ 
+            rotate: [0, -10, 10, 0],
+            transition: { duration: 0.4 }
           }}
         >
-          <Icon className="h-16 w-16 sm:h-20 sm:w-20 text-indigo-400" />
-          
-          <AnimatePresence>
-            {clicked && (
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: [0, 1.5, 1], opacity: [0, 1, 0] }}
-                exit={{ scale: 0, opacity: 0 }}
-                transition={{ duration: 0.8 }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <div className="w-full h-full bg-indigo-500/20 rounded-full" />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <Icon className="h-12 w-12 text-red-400 group-hover:text-red-300 transition-colors duration-300" />
+          <motion.div
+            className="absolute inset-0 bg-red-500/20 rounded-full blur-md"
+            initial={{ scale: 0, opacity: 0 }}
+            whileHover={{ scale: 1.5, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          />
         </motion.div>
-      </div>
+      </motion.div>
     </motion.div>
   )
 }
@@ -409,7 +383,7 @@ export default function Home() {
           aria-hidden="true"
         >
           <div
-            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-indigo-500 to-purple-600 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-red-500 to-red-700 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             style={{
               clipPath:
                 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
@@ -437,15 +411,15 @@ export default function Home() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="mb-6 px-2 py-1 inline-flex items-center space-x-2 rounded-full bg-indigo-900/30 border border-indigo-800"
+                    className="mb-6 px-2 py-1 inline-flex items-center space-x-2 rounded-full bg-red-900/30 border border-red-800"
                   >
                     <motion.span 
                       animate={{ 
                         scale: [1, 1.5, 1],
                         backgroundColor: [
-                          "rgb(99 102 241)",
-                          "rgb(168 85 247)",
-                          "rgb(99 102 241)"
+                          "rgb(233, 33, 61)",
+                          "rgb(239, 68, 68)",
+                          "rgb(233, 33, 61)"
                         ]
                       }}
                       transition={{ 
@@ -453,9 +427,9 @@ export default function Home() {
                         duration: 3, 
                         ease: "easeInOut" 
                       }}
-                      className="inline-block h-2 w-2 rounded-full bg-indigo-500"
+                      className="inline-block h-2 w-2 rounded-full bg-red-500"
                     ></motion.span>
-                    <span className="text-xs font-medium text-indigo-400">DMA Operations Simplified</span>
+                    <span className="text-xs font-medium text-red-400">DMA Operations Simplified</span>
                   </motion.div>
                   
                   <motion.div
@@ -483,7 +457,7 @@ export default function Home() {
                     >
                       <span className="block">All-in-One Web-Based</span>
                       <motion.span 
-                        className="block bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400"
+                        className="block bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-600"
                         animate={{
                           backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
                         }}
@@ -521,7 +495,7 @@ export default function Home() {
                     >
                       <Link
                         to="/setup"
-                        className="group relative overflow-hidden rounded-md bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="group relative overflow-hidden rounded-md bg-red-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
                       >
                         <span className="absolute -top-10 -left-10 h-20 w-20 rounded-full bg-white/20 transition-all duration-300 group-hover:scale-[12]"></span>
                         <span className="relative z-10">Setup Wizard</span>
@@ -585,7 +559,7 @@ export default function Home() {
               </h2>
               <div className="mt-2 flex justify-center">
                 <motion.div 
-                  className="h-1 w-24 bg-indigo-500 rounded-full" 
+                  className="h-1 w-24 bg-red-500 rounded-full" 
                   initial={{ width: 0 }}
                   whileInView={{ width: 96 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
@@ -620,20 +594,20 @@ export default function Home() {
               <motion.div 
                 key={feature.name}
                 variants={item}
-                className="group relative rounded-lg p-6 transition-all duration-300 hover:bg-gray-800"
+                className="group relative rounded-lg p-6 transition-all duration-300 hover:bg-gray-800/50 border border-gray-800/50 hover:border-red-800/50"
                 whileHover={{ 
                   scale: 1.03,
-                  boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.5)"
+                  boxShadow: "0 10px 30px -15px rgba(233, 33, 61, 0.2)"
                 }}
               >
                 <Link to={feature.href} className="block">
                   <div className="flex items-center">
                     <motion.div 
-                      className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600/10 group-hover:bg-indigo-600/20 transition-colors duration-300"
+                      className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-600/10 group-hover:bg-red-600/20 transition-colors duration-300"
                       whileHover={{ rotate: 360 }}
                       transition={{ type: "spring", stiffness: 100, damping: 10 }}
                     >
-                      <feature.icon className="h-6 w-6 text-indigo-400" aria-hidden="true" />
+                      <feature.icon className="h-6 w-6 text-red-400" aria-hidden="true" />
                     </motion.div>
                     <h3 className="ml-3 text-lg font-semibold text-white">
                       {feature.name}
@@ -641,7 +615,7 @@ export default function Home() {
                   </div>
                   <p className="mt-3 text-gray-400">{feature.description}</p>
                   <motion.div 
-                    className="mt-4 flex items-center text-sm font-medium text-indigo-400"
+                    className="mt-4 flex items-center text-sm font-medium text-red-400"
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >

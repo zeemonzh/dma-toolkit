@@ -111,7 +111,7 @@ body::before {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, var(--primary-color), #ff6b6b);
+  background-image: linear-gradient(to right, var(--primary-color), #ff4757);
 }
 
 /* Button with animated hover */
