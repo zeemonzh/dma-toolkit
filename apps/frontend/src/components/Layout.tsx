@@ -72,7 +72,7 @@ const ResourceMonitor = () => {
         </div>
         <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-indigo-500 rounded-full"
+            className="h-full bg-red-500 rounded-full"
             initial={{ width: 0 }}
             animate={{ width: `${cpuUsage}%` }}
             transition={{ duration: 0.5 }}
@@ -86,7 +86,7 @@ const ResourceMonitor = () => {
         </div>
         <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-purple-500 rounded-full"
+            className="h-full bg-red-500 rounded-full"
             initial={{ width: 0 }}
             animate={{ width: `${memoryUsage}%` }}
             transition={{ duration: 0.5 }}
@@ -103,13 +103,13 @@ const AnimatedLogo = () => {
     <div className="flex items-center space-x-2">
       <div className="relative w-8 h-8">
         <motion.div
-          className="absolute inset-0 rounded-md border-2 border-indigo-500"
+          className="absolute inset-0 rounded-md border-2 border-red-500"
           animate={{
             rotate: [0, 90, 180, 270, 360],
             borderColor: [
-              'rgba(99, 102, 241, 0.8)',
-              'rgba(139, 92, 246, 0.8)',
-              'rgba(99, 102, 241, 0.8)',
+              'rgba(233, 33, 61, 0.8)',
+              'rgba(255, 107, 107, 0.8)',
+              'rgba(233, 33, 61, 0.8)',
             ],
           }}
           transition={{
@@ -120,13 +120,13 @@ const AnimatedLogo = () => {
           }}
         />
         <motion.div
-          className="absolute inset-2 bg-indigo-500 rounded-sm"
+          className="absolute inset-2 bg-red-500 rounded-sm"
           animate={{
             rotate: [0, -90, -180, -270, -360],
             backgroundColor: [
-              'rgba(99, 102, 241, 0.8)',
-              'rgba(139, 92, 246, 0.8)',
-              'rgba(99, 102, 241, 0.8)',
+              'rgba(233, 33, 61, 0.8)',
+              'rgba(255, 107, 107, 0.8)',
+              'rgba(233, 33, 61, 0.8)',
             ],
           }}
           transition={{
@@ -138,7 +138,7 @@ const AnimatedLogo = () => {
         />
       </div>
       <motion.h1 
-        className="text-white text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400"
+        className="text-white text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-400"
         animate={{
           backgroundPosition: ['0% center', '100% center', '0% center']
         }}
@@ -161,21 +161,21 @@ const DiscordCard = () => (
     href="https://discord.com/invite/suspectcheats"
     target="_blank"
     rel="noopener noreferrer"
-    className="block rounded-lg bg-indigo-500/10 p-4 hover:bg-indigo-500/20 transition-colors"
+    className="block rounded-lg bg-red-500/10 p-4 hover:bg-red-500/20 transition-colors"
     whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
   >
     <div className="flex items-center justify-between">
       <div className="flex items-center space-x-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-500/20">
-          <UsersIcon className="h-6 w-6 text-indigo-400" />
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-500/20">
+          <UsersIcon className="h-6 w-6 text-red-400" />
         </div>
         <div>
-          <h3 className="text-sm font-medium text-indigo-400">Join Community</h3>
+          <h3 className="text-sm font-medium text-red-400">Join Community</h3>
           <p className="text-xs text-gray-400">Get help & share setups</p>
         </div>
       </div>
-      <ArrowTopRightOnSquareIcon className="h-5 w-5 text-indigo-400" />
+      <ArrowTopRightOnSquareIcon className="h-5 w-5 text-red-400" />
     </div>
   </motion.a>
 );
@@ -357,7 +357,7 @@ export default function Layout() {
                     onClick={action.action}
                     className="flex flex-col items-center p-2 rounded-lg bg-gray-700/50 hover:bg-gray-700 transition-colors"
                   >
-                    <action.icon className="h-5 w-5 text-indigo-400" />
+                    <action.icon className="h-5 w-5 text-red-400" />
                     <span className="text-xs text-gray-300 mt-1">{action.name}</span>
                   </motion.button>
                 ))}
@@ -381,7 +381,7 @@ export default function Layout() {
                     transition={{ delay: 0.6 + index * 0.1 }}
                     className="flex items-center gap-3 text-sm"
                   >
-                    <activity.icon className="h-5 w-5 text-indigo-400" />
+                    <activity.icon className="h-5 w-5 text-red-400" />
                     <div className="flex-1 min-w-0">
                       <p className="text-gray-300 truncate">{activity.name}</p>
                       <p className="text-gray-500 text-xs">{activity.time}</p>
@@ -450,7 +450,7 @@ export default function Layout() {
                     </div>
                   </Transition.Child>
                   
-                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gradient-to-b from-gray-800 to-gray-900 px-6 pb-4 ring-1 ring-white/10">
+                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#14151a] px-6 pb-4 ring-1 ring-white/10">
                     <div className="flex h-16 shrink-0 items-center">
                       <AnimatedLogo />
                     </div>
@@ -484,20 +484,28 @@ export default function Layout() {
                                       to={item.href}
                                       className={`group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-all duration-200 ${
                                         isActive 
-                                          ? 'bg-indigo-600/30 text-white' 
-                                          : 'text-gray-300 hover:bg-gray-700/60 hover:text-white'
+                                          ? 'bg-[#e9213d]/30 text-white' 
+                                          : 'text-gray-300 hover:bg-[#14151a]/60 hover:text-white'
                                       }`}
                                       onClick={() => setSidebarOpen(false)}
                                     >
-                                      <item.icon 
-                                        className={`h-6 w-6 shrink-0 transition-colors duration-200 ${
-                                          isActive ? 'text-indigo-400' : 'group-hover:text-indigo-400'
-                                        }`} 
-                                        aria-hidden="true" 
-                                      />
+                                      <motion.div 
+                                        whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                                        transition={{ duration: 0.5 }}
+                                      >
+                                        <item.icon 
+                                          className={`h-6 w-6 shrink-0 transition-colors duration-200 ${
+                                            isActive ? 'text-[#e9213d]' : 'group-hover:text-[#e9213d]'
+                                          }`} 
+                                          aria-hidden="true" 
+                                        />
+                                      </motion.div>
                                       <span className="flex-1">{item.name}</span>
                                       {isActive && (
-                                        <span className="ml-auto self-center h-1.5 w-1.5 rounded-full bg-indigo-400"></span>
+                                        <motion.span 
+                                          layoutId="activeIndicator"
+                                          className="absolute right-2 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-[#e9213d]"
+                                        ></motion.span>
                                       )}
                                     </Link>
                                   )}
@@ -518,7 +526,7 @@ export default function Layout() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           <motion.div 
-            className="flex grow flex-col gap-y-5 overflow-y-auto bg-gradient-to-b from-gray-800 to-gray-900 px-6 pb-4 shadow-xl"
+            className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#14151a] px-6 pb-4 shadow-xl"
             variants={sidebarVariants}
             initial="hidden"
             animate="visible"
@@ -568,8 +576,8 @@ export default function Layout() {
                               to={item.href}
                               className={`relative group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-all duration-200 ${
                                 isActive 
-                                  ? 'bg-indigo-600/30 text-white' 
-                                  : 'text-gray-300 hover:bg-gray-700/60 hover:text-white'
+                                  ? 'bg-[#e9213d]/30 text-white' 
+                                  : 'text-gray-300 hover:bg-[#14151a]/60 hover:text-white'
                               }`}
                             >
                               <motion.div 
@@ -578,7 +586,7 @@ export default function Layout() {
                               >
                                 <item.icon 
                                   className={`h-6 w-6 shrink-0 transition-colors duration-200 ${
-                                    isActive ? 'text-indigo-400' : 'group-hover:text-indigo-400'
+                                    isActive ? 'text-[#e9213d]' : 'group-hover:text-[#e9213d]'
                                   }`} 
                                   aria-hidden="true" 
                                 />
@@ -587,7 +595,7 @@ export default function Layout() {
                               {isActive && (
                                 <motion.span 
                                   layoutId="activeIndicator"
-                                  className="absolute right-2 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-indigo-400"
+                                  className="absolute right-2 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-[#e9213d]"
                                 ></motion.span>
                               )}
                             </Link>
@@ -614,7 +622,7 @@ export default function Layout() {
         <div className="lg:pl-72">
           <motion.div 
             className={`sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-800 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8 transition-all duration-300 ${
-              scrolled ? 'bg-gray-900/80 backdrop-blur-sm' : 'bg-gray-900'
+              scrolled ? 'bg-[#14151a]/80 backdrop-blur-sm' : 'bg-[#14151a]'
             }`}
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -628,7 +636,7 @@ export default function Layout() {
             <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
               <div className="flex-1 flex items-center">
                 <motion.h2 
-                  className="text-white text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400 hidden sm:block"
+                  className="text-white text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-400 hidden sm:block"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
@@ -640,7 +648,7 @@ export default function Layout() {
                   <div className="h-6 w-px bg-gray-700 hidden sm:block"></div>
                   <motion.a 
                     href="#" 
-                    className="text-sm font-medium text-white hover:text-indigo-400 transition-colors"
+                    className="text-sm font-medium text-white hover:text-red-400 transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
