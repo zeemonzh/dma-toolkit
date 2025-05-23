@@ -107,7 +107,7 @@ export default function SpeedTest() {
       
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         <div className="md:col-span-2">
-          <div className="overflow-hidden rounded-lg bg-gray-800 shadow">
+          <div className="overflow-hidden rounded-lg bg-gray-800 shadow border border-gray-700">
             <div className="p-6">
               <div className="mb-6">
                 <label htmlFor="device-selector" className="block text-sm font-medium text-white">
@@ -115,7 +115,7 @@ export default function SpeedTest() {
                 </label>
                 <select
                   id="device-selector"
-                  className="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 py-2 pl-3 pr-10 text-white focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 py-2 pl-3 pr-10 text-white focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm transition-colors duration-200"
                   value={selectedDevice}
                   onChange={(e) => setSelectedDevice(e.target.value)}
                   disabled={isRunning}
@@ -135,14 +135,14 @@ export default function SpeedTest() {
                 </div>
                 <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-gray-700">
                   <div
-                    className="h-2 rounded-full bg-indigo-500"
-                    style={{ width: `${progress}%`, transition: 'width 0.1s ease-in-out' }}
+                    className="h-2 rounded-full bg-red-500 transition-all duration-100 ease-in-out"
+                    style={{ width: `${progress}%` }}
                   />
                 </div>
               </div>
               
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                <div className="rounded-lg bg-gray-700 p-4">
+                <div className="rounded-lg bg-gray-700 p-4 border border-gray-600">
                   <div className="text-sm font-medium text-gray-300">Read Speed</div>
                   <div className="mt-1 flex items-baseline">
                     <div className="text-2xl font-semibold text-white">{readSpeed}</div>
@@ -150,7 +150,7 @@ export default function SpeedTest() {
                   </div>
                 </div>
                 
-                <div className="rounded-lg bg-gray-700 p-4">
+                <div className="rounded-lg bg-gray-700 p-4 border border-gray-600">
                   <div className="text-sm font-medium text-gray-300">Write Speed</div>
                   <div className="mt-1 flex items-baseline">
                     <div className="text-2xl font-semibold text-white">{writeSpeed}</div>
@@ -158,7 +158,7 @@ export default function SpeedTest() {
                   </div>
                 </div>
                 
-                <div className="rounded-lg bg-gray-700 p-4">
+                <div className="rounded-lg bg-gray-700 p-4 border border-gray-600">
                   <div className="text-sm font-medium text-gray-300">Latency</div>
                   <div className="mt-1 flex items-baseline">
                     <div className="text-2xl font-semibold text-white">{latency}</div>
@@ -172,7 +172,7 @@ export default function SpeedTest() {
                   <button
                     type="button"
                     onClick={startTest}
-                    className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 transition-all duration-200"
                   >
                     <PlayIcon className="mr-1.5 h-5 w-5" />
                     Start Test
@@ -181,7 +181,7 @@ export default function SpeedTest() {
                   <button
                     type="button"
                     onClick={cancelTest}
-                    className="inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                    className="inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 transition-all duration-200"
                   >
                     <StopIcon className="mr-1.5 h-5 w-5" />
                     Cancel Test
@@ -190,7 +190,7 @@ export default function SpeedTest() {
                 
                 <button
                   type="button"
-                  className="ml-3 inline-flex items-center rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+                  className="ml-3 inline-flex items-center rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 transition-all duration-200"
                   onClick={() => {
                     setTestResults([])
                   }}
@@ -204,7 +204,7 @@ export default function SpeedTest() {
         </div>
         
         <div>
-          <div className="overflow-hidden rounded-lg bg-gray-800 shadow">
+          <div className="overflow-hidden rounded-lg bg-gray-800 shadow border border-gray-700">
             <div className="px-4 py-5 sm:p-6">
               <h3 className="text-lg font-medium text-white">Test History</h3>
               <div className="mt-4 flow-root">
@@ -231,7 +231,7 @@ export default function SpeedTest() {
                         </thead>
                         <tbody className="divide-y divide-gray-800">
                           {testResults.map((result, index) => (
-                            <tr key={index}>
+                            <tr key={index} className="hover:bg-red-500/5 transition-colors duration-200">
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
                                 {result.timestamp}
                               </td>
@@ -252,15 +252,15 @@ export default function SpeedTest() {
             </div>
           </div>
           
-          <div className="mt-6 overflow-hidden rounded-lg bg-gray-800 shadow">
+          <div className="mt-6 overflow-hidden rounded-lg bg-gray-800 shadow border border-gray-700">
             <div className="px-4 py-5 sm:p-6">
               <h3 className="text-lg font-medium text-white">Device Information</h3>
               <div className="mt-2 text-sm text-gray-300">
                 <p>Testing the performance of your DMA device allows you to understand its real-world capabilities.</p>
                 <ul className="mt-4 list-disc space-y-2 pl-5 text-sm">
-                  <li>Expected PCIe Gen3 x1: 500-800 MB/s</li>
-                  <li>Expected USB 3.0: 200-300 MB/s</li>
-                  <li>Expected FTDI FT601: 100-200 MB/s</li>
+                  <li><span className="font-semibold text-red-400">Expected PCIe Gen3 x1:</span> 500-800 MB/s</li>
+                  <li><span className="font-semibold text-red-400">Expected USB 3.0:</span> 200-300 MB/s</li>
+                  <li><span className="font-semibold text-red-400">Expected FTDI FT601:</span> 100-200 MB/s</li>
                 </ul>
               </div>
             </div>

@@ -141,7 +141,7 @@ export default function SystemCheckup() {
       case 'error':
         return <XCircleIcon className="h-6 w-6 text-red-500" aria-hidden="true" />
       case 'checking':
-        return <ArrowPathIcon className="h-6 w-6 text-indigo-500 animate-spin" aria-hidden="true" />
+        return <ArrowPathIcon className="h-6 w-6 text-red-500 animate-spin" aria-hidden="true" />
       default:
         return <InformationCircleIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
     }
@@ -150,13 +150,13 @@ export default function SystemCheckup() {
   const getStatusClass = (status: string) => {
     switch (status) {
       case 'success':
-        return 'bg-green-900/20'
+        return 'bg-green-900/20 border border-green-800/50'
       case 'error':
-        return 'bg-red-900/20'
+        return 'bg-red-900/20 border border-red-800/50'
       case 'checking':
-        return 'bg-indigo-900/20'
+        return 'bg-red-900/20 border border-red-800/50'
       default:
-        return 'bg-gray-800'
+        return 'bg-gray-800 border border-gray-700'
     }
   }
 
@@ -180,7 +180,7 @@ export default function SystemCheckup() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <motion.div
-            className="overflow-hidden rounded-lg bg-gray-800 shadow"
+            className="overflow-hidden rounded-lg bg-gray-800 shadow border border-gray-700"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -190,10 +190,10 @@ export default function SystemCheckup() {
                 <h2 className="text-xl font-semibold text-white">Diagnostics</h2>
                 <button
                   type="button"
-                  className={`inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm ${
+                  className={`inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 ${
                     isRunning
                       ? 'bg-gray-600 cursor-not-allowed'
-                      : 'bg-indigo-600 hover:bg-indigo-500'
+                      : 'bg-red-600 hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600'
                   }`}
                   onClick={runSystemCheck}
                   disabled={isRunning}
@@ -216,7 +216,7 @@ export default function SystemCheckup() {
                 {checkItems.map((item) => (
                   <motion.div
                     key={item.id}
-                    className={`rounded-lg p-4 ${getStatusClass(item.status)}`}
+                    className={`rounded-lg p-4 transition-all duration-200 ${getStatusClass(item.status)}`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
@@ -248,7 +248,11 @@ export default function SystemCheckup() {
               </div>
 
               {allChecksComplete && (
-                <div className={`mt-6 rounded-lg p-4 ${hasErrors ? 'bg-red-900/20' : 'bg-green-900/20'}`}>
+                <div className={`mt-6 rounded-lg p-4 border transition-all duration-200 ${
+                  hasErrors 
+                    ? 'bg-red-900/20 border-red-800/50' 
+                    : 'bg-green-900/20 border-green-800/50'
+                }`}>
                   <div className="flex">
                     <div className="mr-4 flex-shrink-0">
                       {hasErrors ? (
@@ -276,7 +280,7 @@ export default function SystemCheckup() {
 
         <div>
           <motion.div
-            className="overflow-hidden rounded-lg bg-gray-800 shadow"
+            className="overflow-hidden rounded-lg bg-gray-800 shadow border border-gray-700"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -285,7 +289,7 @@ export default function SystemCheckup() {
               <h2 className="text-lg font-medium text-white">System Requirements</h2>
               <div className="mt-4 space-y-4">
                 <div>
-                  <h3 className="text-sm font-medium text-white">Hardware</h3>
+                  <h3 className="text-sm font-medium text-red-400">Hardware</h3>
                   <ul className="mt-2 list-disc pl-5 text-sm text-gray-300">
                     <li>Compatible DMA device</li>
                     <li>USB 3.0 or PCIe slot (device dependent)</li>
@@ -293,7 +297,7 @@ export default function SystemCheckup() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-white">Software</h3>
+                  <h3 className="text-sm font-medium text-red-400">Software</h3>
                   <ul className="mt-2 list-disc pl-5 text-sm text-gray-300">
                     <li>DMA Agent v1.0 or higher</li>
                     <li>Device-specific drivers</li>
@@ -305,7 +309,7 @@ export default function SystemCheckup() {
           </motion.div>
 
           <motion.div
-            className="mt-6 overflow-hidden rounded-lg bg-gray-800 shadow"
+            className="mt-6 overflow-hidden rounded-lg bg-gray-800 shadow border border-gray-700"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -314,7 +318,7 @@ export default function SystemCheckup() {
               <h2 className="text-lg font-medium text-white">Troubleshooting</h2>
               <div className="mt-4 space-y-4 text-sm text-gray-300">
                 <div>
-                  <h3 className="text-sm font-medium text-white">Device Not Detected</h3>
+                  <h3 className="text-sm font-medium text-red-400">Device Not Detected</h3>
                   <ul className="mt-2 list-disc pl-5">
                     <li>Ensure device is properly connected</li>
                     <li>Check device power status</li>
@@ -322,7 +326,7 @@ export default function SystemCheckup() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-white">Permission Issues</h3>
+                  <h3 className="text-sm font-medium text-red-400">Permission Issues</h3>
                   <ul className="mt-2 list-disc pl-5">
                     <li>Run the DMA agent as administrator</li>
                     <li>Check system security settings</li>

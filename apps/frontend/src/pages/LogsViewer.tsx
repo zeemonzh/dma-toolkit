@@ -106,9 +106,7 @@ export default function LogsViewer() {
   
   useEffect(() => {
     // Scroll to bottom when logs change if in live mode
-    if (isLive && logContainerRef.current) {
-      logContainerRef.current.scrollTop = logContainerRef.current.scrollHeight
-    }
+    // Removed auto-scroll behavior to let users stay at their current position
   }, [logs, isLive])
   
   useEffect(() => {
@@ -232,12 +230,12 @@ export default function LogsViewer() {
       
       <div className="border-b border-gray-700 pb-5 sm:flex sm:items-center sm:justify-between">
         <div className="flex items-center">
-          <span className="isolate inline-flex rounded-md shadow-sm">
+          <span className="isolate inline-flex rounded-md shadow-sm space-x-2">
             <button
               type="button"
               onClick={() => setFilter('all')}
-              className={`relative inline-flex items-center rounded-l-md px-3 py-2 text-sm font-semibold  ring-1 ring-inset ring-gray-700 focus:z-10 ${
-                filter === 'all' ? 'bg-indigo-500 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              className={`relative inline-flex items-center rounded-l-md px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-700 focus:z-10 transition-all duration-200 ${
+                filter === 'all' ? 'bg-red-500 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
               }`}
             >
               All
@@ -245,8 +243,8 @@ export default function LogsViewer() {
             <button
               type="button"
               onClick={() => setFilter('info')}
-              className={`relative -ml-px inline-flex items-center px-3 py-2 text-sm font-semibold  ring-1 ring-inset ring-gray-700 focus:z-10 ${
-                filter === 'info' ? 'bg-indigo-500 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              className={`relative inline-flex items-center px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-700 focus:z-10 transition-all duration-200 ${
+                filter === 'info' ? 'bg-red-500 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
               }`}
             >
               Info
@@ -254,8 +252,8 @@ export default function LogsViewer() {
             <button
               type="button"
               onClick={() => setFilter('warning')}
-              className={`relative -ml-px inline-flex items-center px-3 py-2 text-sm font-semibold  ring-1 ring-inset ring-gray-700 focus:z-10 ${
-                filter === 'warning' ? 'bg-indigo-500 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              className={`relative inline-flex items-center px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-700 focus:z-10 transition-all duration-200 ${
+                filter === 'warning' ? 'bg-red-500 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
               }`}
             >
               Warning
@@ -263,8 +261,8 @@ export default function LogsViewer() {
             <button
               type="button"
               onClick={() => setFilter('error')}
-              className={`relative -ml-px inline-flex items-center px-3 py-2 text-sm font-semibold  ring-1 ring-inset ring-gray-700 focus:z-10 ${
-                filter === 'error' ? 'bg-indigo-500 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              className={`relative inline-flex items-center px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-700 focus:z-10 transition-all duration-200 ${
+                filter === 'error' ? 'bg-red-500 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
               }`}
             >
               Error
@@ -272,8 +270,8 @@ export default function LogsViewer() {
             <button
               type="button"
               onClick={() => setFilter('debug')}
-              className={`relative -ml-px inline-flex items-center rounded-r-md px-3 py-2 text-sm font-semibold  ring-1 ring-inset ring-gray-700 focus:z-10 ${
-                filter === 'debug' ? 'bg-indigo-500 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              className={`relative inline-flex items-center rounded-r-md px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-700 focus:z-10 transition-all duration-200 ${
+                filter === 'debug' ? 'bg-red-500 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
               }`}
             >
               Debug
@@ -289,7 +287,7 @@ export default function LogsViewer() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="block w-full rounded-md border-0 bg-gray-800 py-1.5 pl-10 text-white ring-1 ring-inset ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 bg-gray-800 py-1.5 pl-10 text-white ring-1 ring-inset ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-600 sm:text-sm sm:leading-6 transition-colors duration-200"
                 placeholder="Filter logs..."
               />
             </div>
@@ -300,7 +298,7 @@ export default function LogsViewer() {
           <button
             type="button"
             onClick={() => setIsLive(!isLive)}
-            className={`mr-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
+            className={`mr-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-200 ${
               isLive 
                 ? 'bg-green-600 text-white hover:bg-green-500 focus-visible:outline-green-600' 
                 : 'bg-gray-600 text-white hover:bg-gray-500 focus-visible:outline-gray-600'
@@ -312,7 +310,7 @@ export default function LogsViewer() {
           <button
             type="button"
             onClick={clearLogs}
-            className="mr-3 inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+            className="mr-3 inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 transition-all duration-200"
           >
             <XMarkIcon className="mr-1.5 h-5 w-5" />
             Clear
@@ -321,7 +319,7 @@ export default function LogsViewer() {
           <button
             type="button"
             onClick={downloadLogs}
-            className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="inline-flex items-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all duration-200"
           >
             <ArrowDownTrayIcon className="mr-1.5 h-5 w-5" />
             Download
@@ -329,11 +327,11 @@ export default function LogsViewer() {
         </div>
       </div>
       
-      <div className="mt-6 overflow-hidden rounded-lg bg-gray-800 shadow">
+      <div className="mt-6 overflow-hidden rounded-lg bg-gray-800 shadow border border-gray-700">
         <div className="p-2">
           <div 
             ref={logContainerRef}
-            className="max-h-[calc(100vh-320px)] min-h-[400px] overflow-y-auto font-mono text-xs"
+            className="h-[600px] overflow-y-auto font-mono text-xs"
           >
             {filteredLogs.length === 0 ? (
               <div className="flex h-full items-center justify-center text-gray-400">
@@ -363,7 +361,7 @@ export default function LogsViewer() {
                       key={log.id}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="hover:bg-gray-700"
+                      className="hover:bg-gray-700 transition-colors duration-200"
                     >
                       <td className="whitespace-nowrap px-2 py-2 text-left">
                         <div className="flex items-center">
@@ -398,7 +396,7 @@ export default function LogsViewer() {
             <div className="text-sm text-gray-400 flex items-center">
               {isLive && (
                 <>
-                  <ArrowPathIcon className="mr-1.5 h-4 w-4 animate-spin text-indigo-400" />
+                  <ArrowPathIcon className="mr-1.5 h-4 w-4 animate-spin text-red-400" />
                   <span>Live updates enabled</span>
                 </>
               )}
@@ -407,10 +405,10 @@ export default function LogsViewer() {
         </div>
       </div>
       
-      <div className="mt-6 overflow-hidden rounded-lg bg-gray-800 p-4 shadow">
+      <div className="mt-6 overflow-hidden rounded-lg bg-gray-800 p-4 shadow border border-gray-700">
         <h2 className="text-lg font-medium text-white">Understanding Log Levels</h2>
         <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-md bg-gray-700 p-3">
+          <div className="rounded-md bg-gray-700 p-3 border border-gray-600">
             <div className="flex items-center">
               <InformationCircleIcon className="h-5 w-5 text-blue-500" />
               <span className="ml-2 font-medium text-blue-400">INFO</span>
@@ -420,7 +418,7 @@ export default function LogsViewer() {
             </p>
           </div>
           
-          <div className="rounded-md bg-gray-700 p-3">
+          <div className="rounded-md bg-gray-700 p-3 border border-gray-600">
             <div className="flex items-center">
               <ExclamationCircleIcon className="h-5 w-5 text-yellow-500" />
               <span className="ml-2 font-medium text-yellow-400">WARNING</span>
@@ -430,7 +428,7 @@ export default function LogsViewer() {
             </p>
           </div>
           
-          <div className="rounded-md bg-gray-700 p-3">
+          <div className="rounded-md bg-gray-700 p-3 border border-gray-600">
             <div className="flex items-center">
               <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
               <span className="ml-2 font-medium text-red-400">ERROR</span>
@@ -440,7 +438,7 @@ export default function LogsViewer() {
             </p>
           </div>
           
-          <div className="rounded-md bg-gray-700 p-3">
+          <div className="rounded-md bg-gray-700 p-3 border border-gray-600">
             <div className="flex items-center">
               <ClockIcon className="h-5 w-5 text-gray-500" />
               <span className="ml-2 font-medium text-gray-400">DEBUG</span>

@@ -5,7 +5,7 @@ A sleek Electron-based GUI for the DMA Toolkit Agent that matches the main webap
 ## Features
 
 - Frameless, modern window design
-- Matches the webapp's dark theme with indigo/purple accents
+- Matches the webapp's dark theme with red accents
 - Shows agent connection status
 - Automatic agent process management
 - System tray integration
@@ -36,7 +36,7 @@ The built application will be available in the `dist` directory.
 
 The GUI uses the same theme as the main webapp:
 - Dark background with blur effects
-- Indigo/purple accent colors (#6366f1, #8b5cf6)
+- Red accent colors (#e9213d, #dc2626, #ef4444)
 - Animated elements for better UX
 - Modern, minimal design
 

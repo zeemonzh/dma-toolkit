@@ -91,7 +91,7 @@ export default function Setup() {
                 {stepIdx < currentStep ? (
                   <Link to="#" className="group flex w-full items-center">
                     <span className="flex items-center px-6 py-4 text-sm font-medium">
-                      <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-600">
+                      <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-red-600">
                         <CheckCircleIcon className="h-6 w-6 text-white" aria-hidden="true" />
                       </span>
                       <span className="ml-4 text-sm font-medium text-white">{step.name}</span>
@@ -99,10 +99,10 @@ export default function Setup() {
                   </Link>
                 ) : stepIdx === currentStep ? (
                   <Link to="#" className="flex items-center px-6 py-4 text-sm font-medium" aria-current="step">
-                    <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-indigo-500">
-                      <span className="text-indigo-500">{stepIdx + 1}</span>
+                    <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-red-500">
+                      <span className="text-red-500">{stepIdx + 1}</span>
                     </span>
-                    <span className="ml-4 text-sm font-medium text-indigo-500">{step.name}</span>
+                    <span className="ml-4 text-sm font-medium text-red-500">{step.name}</span>
                   </Link>
                 ) : (
                   <Link to="#" className="group flex items-center">
@@ -139,7 +139,7 @@ export default function Setup() {
           </ol>
         </nav>
 
-        <div className="mt-10 rounded-lg bg-gray-800 p-8 shadow-lg">
+        <div className="mt-10 rounded-lg bg-gray-800 p-8 shadow-lg border border-gray-700">
           <AnimatePresence mode="wait">
             {currentStep === 0 && (
               <motion.div
@@ -154,20 +154,20 @@ export default function Setup() {
                 </p>
                 
                 {downloadError && (
-                  <div className="mt-4 rounded-md bg-red-900 p-4 text-white text-sm">
-                    <p>Error: {downloadError}</p>
+                  <div className="mt-4 rounded-md bg-red-900/50 p-4 border border-red-800">
+                    <p className="text-red-300 text-sm">Error: {downloadError}</p>
                   </div>
                 )}
                 
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <button
                     onClick={handleDownload}
-                    className={`flex items-center justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm ${
+                    className={`flex items-center justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm transition-all duration-200 ${
                       downloadComplete
-                        ? 'bg-green-600 text-white'
+                        ? 'bg-green-600 text-white hover:bg-green-500'
                         : downloading
                         ? 'bg-gray-600 text-white cursor-wait'
-                        : 'bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                        : 'bg-red-600 text-white hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600'
                     }`}
                     disabled={downloadComplete || downloading}
                   >
@@ -193,7 +193,7 @@ export default function Setup() {
                   </button>
                   
                   <button
-                    className="flex items-center justify-center rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500"
+                    className="flex items-center justify-center rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 transition-all duration-200"
                   >
                     <ArrowDownTrayIcon className="mr-2 h-5 w-5" />
                     Download for macOS
@@ -204,9 +204,9 @@ export default function Setup() {
                     onClick={() => {
                       if (downloadComplete) setCurrentStep(1)
                     }}
-                    className={`ml-auto flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm ${
+                    className={`ml-auto flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm transition-all duration-200 ${
                       downloadComplete
-                        ? 'bg-indigo-600 text-white hover:bg-indigo-500'
+                        ? 'bg-red-600 text-white hover:bg-red-500'
                         : 'bg-gray-700 text-gray-400 cursor-not-allowed'
                     }`}
                     disabled={!downloadComplete}
@@ -229,7 +229,7 @@ export default function Setup() {
                 <p className="mt-2 text-gray-300">
                   Install the agent on your system by running the installer you just downloaded.
                 </p>
-                <div className="mt-4 rounded-md bg-gray-900 p-4">
+                <div className="mt-4 rounded-md bg-gray-900 p-4 border border-gray-700">
                   <pre className="text-sm text-gray-300">
                     <code>
                       {installInstructions.map((instruction, index) => (
@@ -241,16 +241,16 @@ export default function Setup() {
                 <div className="mt-6 flex">
                   <button
                     onClick={() => setCurrentStep(0)}
-                    className="flex items-center rounded-md bg-gray-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-600"
+                    className="flex items-center rounded-md bg-gray-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-600 transition-all duration-200"
                   >
                     Back
                   </button>
                   <button
                     onClick={handleInstall}
-                    className={`ml-auto flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm ${
+                    className={`ml-auto flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm transition-all duration-200 ${
                       !installComplete
-                        ? 'bg-indigo-600 text-white hover:bg-indigo-500'
-                        : 'bg-green-600 text-white'
+                        ? 'bg-red-600 text-white hover:bg-red-500'
+                        : 'bg-green-600 text-white hover:bg-green-500'
                     }`}
                   >
                     {installComplete ? (
@@ -283,7 +283,7 @@ export default function Setup() {
                       <CheckCircleIcon className="h-16 w-16 text-green-500" />
                     ) : (
                       <svg
-                        className="h-16 w-16 animate-spin"
+                        className="h-16 w-16 animate-spin text-red-500"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -309,7 +309,7 @@ export default function Setup() {
                   </span>
                   <button
                     onClick={handleConnect}
-                    className={`mt-6 flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 ${
+                    className={`mt-6 flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 transition-all duration-200 ${
                       agentConnected ? 'hidden' : ''
                     }`}
                   >
@@ -327,14 +327,14 @@ export default function Setup() {
                             alert('Error creating demo folder');
                           }
                         }}
-                        className="mt-4 flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500"
+                        className="mt-4 flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 transition-all duration-200"
                       >
                         <FolderPlusIcon className="mr-2 h-5 w-5" />
                         Create Demo Folder
                       </button>
                       <button
                         onClick={() => setCurrentStep(3)}
-                        className="mt-6 flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
+                        className="mt-6 flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 transition-all duration-200"
                       >
                         Next Step
                         <ChevronRightIcon className="ml-2 h-5 w-5" />
@@ -361,7 +361,7 @@ export default function Setup() {
                 <div className="mt-6">
                   <Link
                     to="/"
-                    className="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
+                    className="inline-flex items-center rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
                   >
                     <ArrowRightCircleIcon className="mr-2 h-5 w-5" />
                     Go to Dashboard

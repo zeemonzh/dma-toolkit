@@ -117,7 +117,7 @@ export default function ToolDownloader() {
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <button
             type="button"
-            className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-500"
+            className="block rounded-md bg-red-600 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 transition-all duration-200"
             onClick={() => {
               // Download all tools
               tools.forEach((tool) => {
@@ -139,7 +139,7 @@ export default function ToolDownloader() {
       >
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+            <div className="overflow-hidden shadow ring-1 ring-gray-700 ring-opacity-50 sm:rounded-lg border border-gray-700">
               <table className="min-w-full divide-y divide-gray-700">
                 <thead className="bg-gray-800">
                   <tr>
@@ -162,6 +162,7 @@ export default function ToolDownloader() {
                     <motion.tr 
                       key={tool.id}
                       whileHover={{ backgroundColor: 'rgba(55, 65, 81, 0.5)' }}
+                      className="transition-colors duration-200"
                     >
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">
                         <div>
@@ -178,7 +179,7 @@ export default function ToolDownloader() {
                             Downloaded
                           </span>
                         ) : tool.isDownloading ? (
-                          <span className="flex items-center justify-end text-indigo-500">
+                          <span className="flex items-center justify-end text-red-500">
                             <svg className="mr-1.5 h-5 w-5 animate-spin" viewBox="0 0 24 24">
                               <circle
                                 className="opacity-25"
@@ -200,7 +201,7 @@ export default function ToolDownloader() {
                         ) : (
                           <button
                             onClick={() => downloadTool(tool.id)}
-                            className="flex items-center justify-end text-indigo-400 hover:text-indigo-300"
+                            className="flex items-center justify-end text-red-400 hover:text-red-300 transition-colors duration-200"
                           >
                             <ArrowDownTrayIcon className="mr-1.5 h-5 w-5" />
                             Download

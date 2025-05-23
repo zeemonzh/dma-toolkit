@@ -17,7 +17,7 @@ export default function About() {
         transition={{ duration: 0.5 }}
         className="bg-gray-800/50 rounded-xl p-8 shadow-xl backdrop-blur-sm border border-gray-700"
       >
-        <h1 className="text-3xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
+        <h1 className="text-3xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-600">
           About
         </h1>
         

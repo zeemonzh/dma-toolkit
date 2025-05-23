@@ -96,7 +96,7 @@ export default function FirmwareFlasher() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <motion.div 
-            className="overflow-hidden rounded-lg bg-gray-800 shadow"
+            className="overflow-hidden rounded-lg bg-gray-800 shadow border border-gray-700"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -115,7 +115,7 @@ export default function FirmwareFlasher() {
                   <select
                     id="device"
                     name="device"
-                    className="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 py-2 pl-3 pr-10 text-white focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 py-2 pl-3 pr-10 text-white focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm transition-colors duration-200"
                     value={selectedDevice}
                     onChange={(e) => setSelectedDevice(e.target.value)}
                     disabled={isFlashing}
@@ -145,7 +145,7 @@ export default function FirmwareFlasher() {
                     <button
                       type="button"
                       onClick={triggerFileInput}
-                      className="inline-flex items-center rounded-md border border-gray-600 bg-gray-700 px-4 py-2 text-sm font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="inline-flex items-center rounded-md border border-gray-600 bg-gray-700 px-4 py-2 text-sm font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200"
                       disabled={isFlashing}
                     >
                       <ArrowUpTrayIcon className="mr-2 h-5 w-5" />
@@ -159,7 +159,7 @@ export default function FirmwareFlasher() {
                 
                 {selectedFile && (
                   <div className="sm:col-span-6">
-                    <div className="rounded-md bg-gray-700 p-3">
+                    <div className="rounded-md bg-gray-700 p-3 border border-gray-600">
                       <div className="flex">
                         <div className="mr-3 flex-shrink-0">
                           <ExclamationTriangleIcon className="h-5 w-5 text-yellow-400" aria-hidden="true" />
@@ -183,8 +183,8 @@ export default function FirmwareFlasher() {
                     </div>
                     <div className="h-2 w-full overflow-hidden rounded-full bg-gray-700">
                       <div
-                        className="h-2 rounded-full bg-indigo-500"
-                        style={{ width: `${flashProgress}%`, transition: 'width 0.2s ease-in-out' }}
+                        className="h-2 rounded-full bg-red-500 transition-all duration-200 ease-in-out"
+                        style={{ width: `${flashProgress}%` }}
                       />
                     </div>
                     <p className="mt-2 text-xs text-gray-400">Do not disconnect the device during firmware update.</p>
@@ -193,7 +193,11 @@ export default function FirmwareFlasher() {
                 
                 {!isFlashing && flashStatus !== 'idle' && (
                   <div className="sm:col-span-6">
-                    <div className={`rounded-md p-4 ${flashStatus === 'success' ? 'bg-green-900/30' : 'bg-red-900/30'}`}>
+                    <div className={`rounded-md p-4 border ${
+                      flashStatus === 'success' 
+                        ? 'bg-green-900/30 border-green-800' 
+                        : 'bg-red-900/30 border-red-800'
+                    }`}>
                       <div className="flex">
                         <div className="flex-shrink-0">
                           {flashStatus === 'success' ? (
@@ -220,10 +224,10 @@ export default function FirmwareFlasher() {
                     type="button"
                     onClick={startFlashing}
                     disabled={!selectedDevice || !selectedFile || isFlashing}
-                    className={`inline-flex items-center rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm ${
+                    className={`inline-flex items-center rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 ${
                       !selectedDevice || !selectedFile || isFlashing
                         ? 'bg-gray-600 cursor-not-allowed'
-                        : 'bg-indigo-600 hover:bg-indigo-500'
+                        : 'bg-red-600 hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600'
                     }`}
                   >
                     Flash Firmware
@@ -236,7 +240,7 @@ export default function FirmwareFlasher() {
         
         <div>
           <motion.div 
-            className="overflow-hidden rounded-lg bg-gray-800 shadow"
+            className="overflow-hidden rounded-lg bg-gray-800 shadow border border-gray-700"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -260,8 +264,8 @@ export default function FirmwareFlasher() {
                           <div className="text-white">{device.firmwareType}</div>
                         </div>
                         
-                        <div className="mt-4 rounded-md bg-gray-700 p-3">
-                          <h3 className="text-sm font-medium text-white">Compatible Firmware</h3>
+                        <div className="mt-4 rounded-md bg-gray-700 p-3 border border-gray-600">
+                          <h3 className="text-sm font-medium text-red-400">Compatible Firmware</h3>
                           <p className="mt-1 text-xs text-gray-300">
                             This device accepts {device.firmwareType} files. Please make sure your firmware is compatible.
                           </p>
@@ -271,7 +275,7 @@ export default function FirmwareFlasher() {
                   )}
                 </div>
               ) : (
-                <div className="mt-4 rounded-md bg-gray-700 p-3 text-center text-sm text-gray-300">
+                <div className="mt-4 rounded-md bg-gray-700 p-3 text-center text-sm text-gray-300 border border-gray-600">
                   Select a device to see information
                 </div>
               )}
@@ -279,7 +283,7 @@ export default function FirmwareFlasher() {
           </motion.div>
           
           <motion.div 
-            className="mt-6 overflow-hidden rounded-lg bg-gray-800 shadow"
+            className="mt-6 overflow-hidden rounded-lg bg-gray-800 shadow border border-gray-700"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}  
@@ -288,19 +292,19 @@ export default function FirmwareFlasher() {
               <h2 className="text-lg font-medium text-white">Firmware Guide</h2>
               <ul className="mt-4 space-y-3 text-sm text-gray-300">
                 <li className="flex items-start">
-                  <span className="mr-2 text-lg font-bold">1.</span>
+                  <span className="mr-2 text-lg font-bold text-red-400">1.</span>
                   <span>Select your connected DMA device from the dropdown</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-2 text-lg font-bold">2.</span>
+                  <span className="mr-2 text-lg font-bold text-red-400">2.</span>
                   <span>Upload the firmware file (usually .bin or .hex format)</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-2 text-lg font-bold">3.</span>
+                  <span className="mr-2 text-lg font-bold text-red-400">3.</span>
                   <span>Click "Flash Firmware" to begin the update process</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-2 text-lg font-bold">4.</span>
+                  <span className="mr-2 text-lg font-bold text-red-400">4.</span>
                   <span>Wait for the process to complete. Do not disconnect the device</span>
                 </li>
               </ul>

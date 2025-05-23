@@ -98,7 +98,7 @@ export default function DmaIdGetter() {
         </p>
       </motion.div>
 
-      <div className="mt-6 overflow-hidden rounded-lg bg-gray-800 shadow">
+      <div className="mt-6 overflow-hidden rounded-lg bg-gray-800 shadow border border-gray-700">
         <div className="px-4 py-5 sm:p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -109,7 +109,7 @@ export default function DmaIdGetter() {
             </div>
             <button
               type="button"
-              className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 transition-all duration-200"
               onClick={handleScan}
               disabled={isScanning}
             >
@@ -135,7 +135,7 @@ export default function DmaIdGetter() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+        <div className="overflow-hidden shadow ring-1 ring-gray-700 ring-opacity-50 sm:rounded-lg border border-gray-700">
           <table className="min-w-full divide-y divide-gray-700">
             <thead className="bg-gray-800">
               <tr>
@@ -168,7 +168,7 @@ export default function DmaIdGetter() {
                   <td colSpan={7} className="py-10 text-center text-sm text-gray-400">
                     {isScanning ? (
                       <div className="flex flex-col items-center">
-                        <ArrowPathIcon className="h-8 w-8 animate-spin text-indigo-500" />
+                        <ArrowPathIcon className="h-8 w-8 animate-spin text-red-500" />
                         <p className="mt-2">Scanning for DMA devices...</p>
                       </div>
                     ) : (
@@ -176,7 +176,7 @@ export default function DmaIdGetter() {
                         <p>No devices detected</p>
                         <button
                           type="button"
-                          className="mt-2 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
+                          className="mt-2 inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 transition-all duration-200"
                           onClick={handleScan}
                         >
                           <ArrowPathIcon className="mr-1.5 h-5 w-5" />
@@ -190,7 +190,8 @@ export default function DmaIdGetter() {
                 devices.map((device) => (
                   <motion.tr 
                     key={device.id}
-                    whileHover={{ backgroundColor: 'rgba(55, 65, 81, 0.5)' }}
+                    whileHover={{ backgroundColor: 'rgba(239, 68, 68, 0.1)' }}
+                    className="transition-colors duration-200"
                   >
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">
                       {device.type}
@@ -205,7 +206,7 @@ export default function DmaIdGetter() {
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                       <button
                         onClick={() => copyToClipboard(device.id, device.id)}
-                        className="text-indigo-400 hover:text-indigo-300"
+                        className="text-red-400 hover:text-red-300 transition-colors duration-200"
                       >
                         {showCopied === device.id ? (
                           <CheckIcon className="h-5 w-5 text-green-500" />
@@ -223,13 +224,13 @@ export default function DmaIdGetter() {
         </div>
       </motion.div>
 
-      <div className="mt-6 rounded-md bg-gray-800 p-4">
+      <div className="mt-6 rounded-md bg-gray-800 p-4 border border-gray-700">
         <h3 className="text-sm font-medium text-white">Device Information</h3>
         <p className="mt-1 text-sm text-gray-300">
           The unique identifiers shown above can be used in your DMA configuration files to specify which device to use.
           Most DMA tools use these identifiers to establish a connection with the hardware.
         </p>
-        <div className="mt-2 rounded-md bg-gray-900 p-3">
+        <div className="mt-2 rounded-md bg-gray-900 p-3 border border-gray-600">
           <pre className="text-xs text-gray-300 font-mono">
             <code>
               # Example configuration<br />

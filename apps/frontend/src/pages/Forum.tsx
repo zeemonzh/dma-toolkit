@@ -34,7 +34,7 @@ const Forum = () => {
     <div className="-mt-3">
       {/* Iframe container */}
       <motion.div
-        className="w-full bg-gray-800/30 rounded-lg overflow-hidden shadow-xl border border-gray-800"
+        className="w-full bg-gray-800/30 rounded-lg overflow-hidden shadow-xl border border-gray-700"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
@@ -42,7 +42,7 @@ const Forum = () => {
       >
         {loading && (
           <div className="flex justify-center items-center w-full h-full">
-            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-500"></div>
+            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-red-500"></div>
           </div>
         )}
         <iframe

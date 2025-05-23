@@ -372,9 +372,9 @@ export default function Home() {
   };
   
   return (
-    <div className="relative isolate -mt-10">
+    <div className="relative isolate -mt-10 -mb-10">
       {/* Hero section */}
-      <div className="relative isolate min-h-screen flex items-center -z-10 pt-10" ref={heroRef}>
+      <div className="relative isolate min-h-[calc(100vh-4rem)] flex items-center -z-10 overflow-visible" ref={heroRef}>
         <Particles />
         <CircuitAnimation />
         
@@ -391,9 +391,9 @@ export default function Home() {
           />
         </div>
         
-        <div className="overflow-hidden w-full">
+        <div className="overflow-visible w-full">
           <motion.div 
-            className="mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8 lg:pt-20 relative z-10 flex justify-center"
+            className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 flex justify-center"
             style={{ 
               opacity: contentOpacity, 
               y: contentY,
